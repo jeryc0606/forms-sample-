@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact Form</title>
+<style>
+  :root{
+    --bg:#f5f6f8;
+    --card:#ffffff;
+    --text:#1c1e21;
+    --muted:#6b7280;
+    --border:#d7dbe0;
+    --border-hover:#a9b0ba;
+    --accent:#3b5bfd;
+    --accent-soft:rgba(59,91,253,0.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14161a;
+      --card:#1d2025;
+      --text:#eef0f3;
+      --muted:#9aa1ab;
+      --border:#33373f;
+      --border-hover:#4a4f59;
+      --accent:#6f8bff;
+      --accent-soft:rgba(111,139,255,0.15);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100%;
+    padding:40px 16px;
+    padding-top:calc(40px + env(safe-area-inset-top,0px));
+    padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));
+  }
+  form{
+    width:100%;
+    max-width:480px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:36px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  }
+  h1{
+    font-size:22px;
+    margin:0 0 6px;
+  }
+  p.sub{
+    margin:0 0 28px;
+    color:var(--muted);
+    font-size:14px;
+  }
+  .field{
+    margin-bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+  }
+  input, select, textarea{
+    font:inherit;
+    color:var(--text);
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    width:100%;
+  }
+  textarea{resize:vertical;min-height:80px;}
+
+  /* hover */
+  input:hover, select:hover, textarea:hover{
+    border-color:var(--border-hover);
+  }
+  /* focus */
+  input:focus, select:focus, textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-soft);
+    background:var(--card);
+  }
+  /* active (mouse/key down) */
+  input:active, select:active, textarea:active{
+    border-color:var(--accent);
+  }
+
+  .row{
+    display:flex;
+    gap:12px;
+  }
+  .row .field{flex:1;}
+
+  button{
+    width:100%;
+    margin-top:8px;
+    padding:12px 16px;
+    font-size:15px;
+    font-weight:600;
+    color:#fff;
+    background:var(--accent);
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition:filter .15s ease, transform .05s ease;
+  }
+  button:hover{ filter:brightness(1.08); }
+  button:focus-visible{ box-shadow:0 0 0 3px var(--accent-soft); outline:none; }
+  button:active{ filter:brightness(0.92); transform:translateY(1px); }
+
+  .checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .checkbox-row input{width:auto;}
+</style>
+</head>
+<body>
+
+<form onsubmit="event.preventDefault(); alert('Form submitted!');">
+  <h1>Get in touch</h1>
+  <p class="sub">Fill out the form below and we'll get back to you.</p>
+
+  <div class="row">
+    <div class="field">
+      <label for="fname">First name</label>
+      <input id="fname" type="text" placeholder="Jane" required>
+    </div>
+    <div class="field">
+      <label for="lname">Last name</label>
+      <input id="lname" type="text" placeholder="Doe" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="jane@example.com" required>
+  </div>
+
+  <div class="field">
+    <label for="phone">Phone</label>
+    <input id="phone" type="tel" placeholder="+1 555 000 0000">
+  </div>
+
+  <div class="field">
+    <label for="company">Company</label>
+    <input id="company" type="text" placeholder="Acme Inc.">
+  </div>
+
+  <div class="field">
+    <label for="website">Website</label>
+    <input id="website" type="url" placeholder="https://example.com">
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="dob">Date of birth</label>
+      <input id="dob" type="date">
+    </div>
+    <div class="field">
+      <label for="budget">Budget</label>
+      <input id="budget" type="number" placeholder="1000">
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="country">Country</label>
+    <select id="country">
+      <option value="">Select a country</option>
+      <option>Philippines</option>
+      <option>United States</option>
+      <option>United Kingdom</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="topic">Topic</label>
+    <select id="topic">
+      <option value="">Choose a topic</option>
+      <option>General inquiry</option>
+      <option>Support</option>
+      <option>Partnership</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Tell us more..."></textarea>
+  </div>
+
+  <div class="field">
+    <div class="checkbox-row">
+      <input id="agree" type="checkbox" required>
+      <label for="agree" style="font-weight:400;">I agree to the terms and conditions</label>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
